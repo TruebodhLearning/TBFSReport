@@ -72,11 +72,6 @@ namespace TBFSReport
             this.Close();
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnExport_Click(object sender, EventArgs e)
         {
             // Creating a Excel object.
@@ -137,7 +132,9 @@ namespace TBFSReport
                 }
 
             }
-        }
+
+       
+    }
     public class filerecords
     {
         public string filename { get; set; }
