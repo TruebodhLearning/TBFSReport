@@ -92,7 +92,7 @@ namespace TBFSReport
                     //Loop through each row and read value from each column.
                     for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
                     {
-                        for (int j = 0; j < 16; j++)
+                        for (int j = 0; j < 3; j++)
                         {
                             // Excel index starts from 1,1. As first Row would have the Column headers, adding a condition check.
                             if (cellRowIndex == 1)
