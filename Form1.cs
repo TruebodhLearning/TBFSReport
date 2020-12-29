@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using Microsoft.Office;
 using Microsoft.Office.Interop;
+using System.Diagnostics;
 namespace TBFSReport
 {
     public partial class Form1 : Form
@@ -22,6 +23,7 @@ namespace TBFSReport
             dt.Columns.Add(new DataColumn("Files", typeof(string)));
             dt.Columns.Add(new DataColumn("Size", typeof(string)));
             dt.Columns.Add(new DataColumn("Path", typeof(string)));
+            dt.Columns.Add(new DataColumn("Open File", typeof(string)));
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -53,6 +55,9 @@ namespace TBFSReport
                 dr[0] = fi.Name;
                 dr[1] = fi.Length.ToString();
                 dr[2] = fi.FullName.ToString();
+                Label lblopenfile = new Label();
+                dr[3] = lblopenfile.Text="Click";
+                //dr[3] = new Label().Text="Click";
                 dt.Rows.Add(dr);
                 //   Console.WriteLine(file);
 
@@ -60,11 +65,10 @@ namespace TBFSReport
             dataGridView1.DataSource = dt;
           
         }
-
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = string.Format("Files LIKE '{0}%'", textBox2.Text);
-
+            //(dataGridView1.DataSource as DataTable).DefaultView.RowFilter = string.Format("Files LIKE '{0}%'", textBox2.Text);
+            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"[Files] LIKE '%{textBox2.Text}%'";
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -75,14 +79,14 @@ namespace TBFSReport
         private void btnExport_Click(object sender, EventArgs e)
         {
             // Creating a Excel object.
-                Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
-                Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
-                Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+                Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+                Microsoft.Office.Interop.Excel.Workbook workbook = excel.Workbooks.Add(Type.Missing);
+                Microsoft.Office.Interop.Excel.Worksheet worksheet = null;
 
                 try
                 {
 
-                    worksheet = (Microsoft.Office.Interop.Excel._Worksheet)workbook.ActiveSheet;
+                    worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.ActiveSheet;
 
                     worksheet.Name = "ExportedFromDatGrid";
 
