@@ -66,6 +66,7 @@
             this.dataGridView1.RowTemplate.Height = 30;
             this.dataGridView1.Size = new System.Drawing.Size(954, 300);
             this.dataGridView1.TabIndex = 3;
+            
             // 
             // textBox2
             // 

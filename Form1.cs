@@ -23,9 +23,14 @@ namespace TBFSReport
             dt.Columns.Add(new DataColumn("Files", typeof(string)));
             dt.Columns.Add(new DataColumn("Size", typeof(string)));
             dt.Columns.Add(new DataColumn("Path", typeof(string)));
-            dt.Columns.Add(new DataColumn("Open File", typeof(string)));
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            dataGridView1.Columns.Add(btn);
+            //btn.HeaderText = "Click Data";
+            btn.Text = "Click Here";
+            //btn.Name = "btn";
+            btn.UseColumnTextForButtonValue = true;
+            //dt.Columns.Add(new DataColumn("Open", typeof(string)));
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderDlg = new FolderBrowserDialog();
@@ -55,12 +60,10 @@ namespace TBFSReport
                 dr[0] = fi.Name;
                 dr[1] = fi.Length.ToString();
                 dr[2] = fi.FullName.ToString();
-                Label lblopenfile = new Label();
-                dr[3] = lblopenfile.Text="Click";
-                //dr[3] = new Label().Text="Click";
+                //Button btn = new Button();
+                //dr[3] = btn;
                 dt.Rows.Add(dr);
                 //   Console.WriteLine(file);
-
             }
             dataGridView1.DataSource = dt;
           
@@ -134,15 +137,12 @@ namespace TBFSReport
                     workbook = null;
                     excel = null;
                 }
-
             }
-
-       
+        //System.Diagnostics.Process.Start(@"Name");
     }
     public class filerecords
     {
         public string filename { get; set; }
 
     }
-
 }
